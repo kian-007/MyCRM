@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Sahel';
+    font-style: normal;
+    font-weight: 400;
+    src: url('include/persian-web-font/sahel-font-v1.0.0-alpha14/Sahel.eot');
+    src: url('include/persian-web-font/sahel-font-v1.0.0-alpha14/Sahel.eot?#iefix') format('embedded-opentype'), url('persian-web-font/sahel-font-v1.0.0-alpha14/Sahel.woff2') format('woff2'), url('persian-web-font/sahel-font-v1.0.0-alpha14/Sahel.woff') format('woff'), url('persian-web-font/sahel-font-v1.0.0-alpha14/Sahel.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Yekan';
+    font-style: normal;
+    font-weight: 400;
+    src: url('include/persian-web-font/yekan-font/Yekan.eot');
+    src: url('include/persian-web-font/yekan-font/Yekan.eot?#iefix') format('embedded-opentype'), url('include/persian-web-font/yekan-font/yekan-regular.eot') format('embedded-opentype'), url('persian-web-font/yekan-font/Yekan.woff') format('woff'), url('persian-web-font/yekan-font/yekan-regular.woff') format('woff'), url('persian-web-font/yekan-font/Yekan.ttf') format('truetype');
+}
+
+* {
+    font-family: Sahel, Yekan !important;
+}
+
+.float_right {
+    float: right;
+}
+
+.mylink {
+    color: black;
+}
+
+.mylink:hover {
+    border-bottom: solid 1px rgba(230, 230, 230, 1);
+    color: black;
+}
+
+.pp {
+    border-bottom: solid brown;
+    border-width: 5px;
+    outline: solid 5px orange;
+    outline-offset: 5.5px;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    margin: 30px;
+    overflow: auto;
+    background-color: RGBA(255, 171, 48, 1);
+}
+
+.pp:hover {
+    background-color: RGBA(255, 171, 48, 0.5);
+}
+
+.cubic {
+    max-width: 350px;
+    min-height: 350px;
+    text-align: center;
+    margin-left: 25px;
+    margin-top: 25px;
+}
