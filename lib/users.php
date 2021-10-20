@@ -5,13 +5,13 @@ function get_user($username){
 	if(!$username){
 		return null;
 	}
-	global $db;
-	$result = $db->query("
+	global $pdo;
+	$result = $pdo->query("
 		SELECT *
 		FROM users
 		WHERE username = '$username'
 	");
-	$row = $result->fetch_assoc();
+	$row = $result->fetch(PDO::FETCH_ASSOC);
 	return $row;
 }
 
@@ -21,8 +21,8 @@ function user_exists($username){
 }
 
 function user_count(){
-	global $db;
-	$result = $db->query("
+	global $pdo;
+	$result = $pdo->query("
 		SELECT *
 		FROM users
 	");
@@ -33,9 +33,9 @@ function user_count(){
 /*
 function initialize_users(){
 	if(user_count() == 0){
-		global $db;
+		global $pdo;
 		$default_pw_hash = sha1('admin007');
-		$db->query("
+		$pdo->query("
 			INSERT INTO users (username, password, first_name, last_name, phone_number, email) VALUES
 			('admin', '$default_pw_hash', '', '', '', '');
 		");
@@ -64,9 +64,9 @@ function add_user($userdata){
 	}
 	$new_username = $userdata['new_username']; //برای تغییر نام کاربری و پسورد
 
-	global $db;
+	global $pdo;
 	if(!user_exists($username)){
-		$db->query("
+		$pdo->query("
 			INSERT INTO users (username, password, first_name, last_name, phone_number, email) VALUES
 			('$username', '$password', '$first_name', '$last_name', '$phone_number', '$email');
 		");
@@ -90,7 +90,7 @@ function add_user($userdata){
 			$email = $userdata['email'];
 		}else{$email = $user['email'];}
 
-		$db->query("
+		$pdo->query("
             UPDATE users
             SET username='$new_username', password='$password', first_name='$first_name', last_name='$last_name', phone_number='$phone_number', email='$email'
             WHERE id ='$id';
@@ -106,8 +106,8 @@ function delete_user($username){
 	if(!user_exists($username)){
 		return;
 	}
-	global $db;
-	$db->query("
+	global $pdo;
+	$pdo->query("
 		DELETE FROM users
 		WHERE username = '$username';
 	");

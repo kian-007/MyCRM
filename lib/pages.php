@@ -1,14 +1,14 @@
 <?php
 
 function get_all_pages($include_hidden = false){
-    global $db;
+    global $pdo;
     if($include_hidden){
-        $result = $db->query("
+        $result = $pdo->query("
             SELECT *
             FROM pages
         ");   
     } else{
-            $result = $db->query("
+            $result = $pdo->query("
             SELECT *
             FROM pages
             WHERE hidden = 0
@@ -16,7 +16,7 @@ function get_all_pages($include_hidden = false){
     }
     
     $pages = array();
-    while($row = $result->fetch_assoc()){
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
         $pages[] = $row;
     }
     
@@ -24,14 +24,14 @@ function get_all_pages($include_hidden = false){
 }
 
 function page_count($include_hidden = false){
-    global $db;
+    global $pdo;
     if($include_hidden){
-        $result = $db->query("
+        $result = $pdo->query("
             SELECT *
             FROM pages
         ");    
     } else{
-        $result = $db->query("
+        $result = $pdo->query("
             SELECT *
             FROM pages
             WHERE hidden = 0
@@ -46,13 +46,13 @@ function get_page($id){
 	if(!$id){
 		return null;
 	}
-	global $db;
-	$result = $db->query("
+	global $pdo;
+	$result = $pdo->query("
 		SELECT *
 		FROM pages
 		WHERE id = '$id'
 	");
-	$row = $result->fetch_assoc();
+	$row = $result->fetch(PDO::FETCH_ASSOC);
 	return $row;
 }
 
@@ -68,13 +68,13 @@ function get_page_by_slug($slug){
 	if(!$slug){
 		return null;
 	}
-	global $db;
-	$result = $db->query("
+	global $pdo;
+	$result = $pdo->query("
 		SELECT *
 		FROM pages
 		WHERE slug = '$slug'
 	");
-	$row = $result->fetch_assoc();
+	$row = $result->fetch(PDO::FETCH_ASSOC);
 	return $row;
 }
 
@@ -102,15 +102,15 @@ function add_page($pagedata){
         $hidden = 1;
     }
 
-    global $db;
+    global $pdo;
     if(!page_exists($id)){
-            $db->query("
+            $pdo->query("
                     INSERT INTO pages (id, slug, title, content, hidden) VALUES
                     (NULL,'$slug', '$title', '$content', '$hidden');
             ");
-            $id = $db->insert_id;
+            $id = $pdo->lastInsertId();
     }else{
-            $db->query("
+            $pdo->query("
         UPDATE pages
         SET title='$title', content='$content', hidden='$hidden', slug='$slug'
         WHERE id ='$id';
@@ -128,8 +128,8 @@ function delete_page($id){
 	if(!page_exists($id)){
 		return;
 	}
-	global $db;
-	$db->query("
+	global $pdo;
+	$pdo->query("
 		DELETE FROM pages
 		WHERE id = '$id';
 	");

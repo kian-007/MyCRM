@@ -27,12 +27,12 @@ function get_content(){ ?>
 
     <div class="pp cubic">
         <?php 
-            global $db;
-            $result = $db->query("
+            global $pdo;
+            $result = $pdo->query("
             select * from pages
             ORDER BY id DESC LIMIT 1;
             ");
-            $row = $result->fetch_assoc();
+            $row = $result->fetch(PDO::FETCH_ASSOC);
             $id =  $row['id'];
 
             $last_page = get_page($id);
