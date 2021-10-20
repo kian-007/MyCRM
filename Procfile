@@ -1,1 +1,1 @@
-web: C:\Windows\System32\heroku-php-apache2 mycrm\
+web: heroku-php-apache2
