@@ -26,8 +26,11 @@ function user_count(){
 		SELECT *
 		FROM users
 	");
-	
-	return $result->num_rows;
+	$counter = 0;
+	while($row = $result->fetch(PDO::FETCH_ASSOC)){
+		$counter++;
+	}
+	return $counter;
 }
 
 /*

@@ -37,9 +37,11 @@ function page_count($include_hidden = false){
             WHERE hidden = 0
         ");
     }
-    
-    return $result->num_rows;
-    
+    $counter = 0;
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+            $counter++;
+    }
+    return $counter;
 }
 
 function get_page($id){
