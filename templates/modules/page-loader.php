@@ -1,6 +1,11 @@
 <?php
 
 
+function authentication_required(){
+	return true;
+}
+
+
 function get_title(){
     global $current_page;
     return $current_page['title'];
