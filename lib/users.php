@@ -65,7 +65,9 @@ function add_user($userdata){
 	if(isset($userdata['email'])){
 		$email = $userdata['email'];
 	}
-	$new_username = $userdata['new_username']; //برای تغییر نام کاربری و پسورد
+	if(isset($userdata['new_username'])){
+		$new_username = $userdata['new_username']; //برای تغییر نام کاربری و پسورد
+	}
 
 	global $pdo;
 	if(!user_exists($username)){
