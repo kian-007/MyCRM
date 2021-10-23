@@ -17,7 +17,13 @@ function connect_to_db(){
 	return $pdo;
 }
 
-
+$result = $pdo->query("
+	select title from pages where id=1
+");
+$row = $result->fetch(PDO::FETCH_ASSOC);
+foreach($row as $ro){
+	echo $ro;
+}
 
 
 

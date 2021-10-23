@@ -68,7 +68,7 @@ function page_exists($id){
 
 function get_page_by_slug($slug){
 	if(!$slug){
-		return null;
+		return '';
 	}
 	global $pdo;
 	$result = $pdo->query("
