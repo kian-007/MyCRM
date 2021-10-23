@@ -1,9 +1,5 @@
 <?php
 
-
-
-<?php
-
 global $pdo;
 
 function connect_to_db(){
