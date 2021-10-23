@@ -7,10 +7,6 @@ function get_title(){
 
 
 function get_content(){ ?>
-
-	<pre>
-	<?php var_dump($_SERVER); ?>
-	</pre>
   
     <!--<p style="font-size: 17pt;">محتوای این صفحه برای همه قابل دیدن است.</p>-->
     <p class="pp">users count: <?php echo user_count(); ?></p>
