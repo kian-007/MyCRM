@@ -107,8 +107,8 @@ function add_page($pagedata){
     global $pdo;
     if(!page_exists($id)){
             $pdo->query("
-                    INSERT INTO pages (id, slug, title, content, hidden) VALUES
-                    (NULL,'$slug', '$title', '$content', '$hidden');
+                    INSERT INTO pages (slug, title, content, hidden) VALUES
+                    ('$slug', '$title', '$content', '$hidden');
             ");
             $id = $pdo->lastInsertId();
     }else{
@@ -228,7 +228,7 @@ function display_pages_list($add_ul = true){
         echo '<li>';
         $url = get_page_url($page['id']);
         $title = $page['title'];
-        echo '<a class="nav-link px-2 text-secondary mylink" href="'.$url.'">'.$title.'</a>';
+        echo '<a class="nav-link px-2 text-light mylink" href="'.$url.'">'.$title.'</a>';
         echo '</li>';
     }
     if($add_ul){

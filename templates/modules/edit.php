@@ -2,7 +2,7 @@
 
 
 function get_title(){
-    echo 'ویرایش صفحه';
+    echo 'ویرایش یادداشت';
 }
 
 

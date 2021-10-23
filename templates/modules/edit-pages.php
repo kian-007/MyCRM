@@ -2,7 +2,7 @@
 
 
 function get_title(){
-    echo 'ویرایش برگه ها';
+    echo 'ویرایش یادداشت ها';
 }
 
 
@@ -12,7 +12,7 @@ function authentication_required(){
 
 function get_content(){ ?>
 
-    <h3>برگه ها</h3>
+    <h3>دفترچه یادداشت ها</h3>
     
     <table class="table table-dark table-bordered table-hover">
         <tr class="table-dark table-active">

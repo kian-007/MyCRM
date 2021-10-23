@@ -2,7 +2,7 @@
 
 
 function get_title(){
-    echo 'ایجاد صفحه جدید';
+    echo 'ایجاد یادداشت جدید';
 }
 
 
@@ -20,7 +20,7 @@ function get_content(){ ?>
     <div class="col-6 col-md-2"></div>
     
     <div class="col-6 col-md-8">
-        <h3>صفحه جدید</h3>
+        <h3>یادداشت جدید</h3>
         <hr>
         <br>
 

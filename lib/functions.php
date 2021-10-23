@@ -8,7 +8,7 @@ function home_url($path = null){
 }
 
 function get_module_name(){
-    $url = $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     $req = str_replace(SITE_URL, '', $url);
     
     $question_mark_pos = strpos($req, '?');
