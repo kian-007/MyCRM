@@ -46,7 +46,7 @@ function get_content(){ ?>
         <span style="color:red; font-size:larger"><strong>دفترچه یادداشت</strong></span>
         <br>
 
-        <<<?php echo $last_page['title']; ?>>>
+        <a href="<?php echo get_page_url($id); ?>" style="text-decoration: none; color: white;"><<<?php echo $last_page['title']; ?>>></a>
         <br>
         <?php echo $last_page['content']; ?>
         
