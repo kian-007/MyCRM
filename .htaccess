@@ -1,7 +1,7 @@
 Options All -Indexes
 
 RewriteEngine on
-RewriteBase /mycrm7.herokuapp.com/
+RewriteBase https://mycrm7.herokuapp.com
 RewriteRule ^index\.php -[L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
