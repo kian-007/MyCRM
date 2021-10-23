@@ -17,9 +17,9 @@ function get_content(){ ?>
 <script src="https://cdn.tiny.cloud/1/pab05hdabof5zwoz0b2l4fs6x2ouvbj46g8od3vw3o7h5m1a/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <div class="row">
-    <div class="col-6 col-md-2"></div>
+    <div class="col-1 col-md-2"></div>
     
-    <div class="col-6 col-md-8">
+    <div class="col-10 col-md-8">
         <h3>یادداشت جدید</h3>
         <hr>
         <br>
@@ -46,7 +46,7 @@ function get_content(){ ?>
 
     </div>
     
-    <div class="col-6 col-md-2"></div>
+    <div class="col-1 col-md-2"></div>
 </div>
 
 
