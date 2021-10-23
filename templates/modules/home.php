@@ -10,7 +10,8 @@ function get_content(){ ?>
   
 	<?php
 		echo get_module_name();
-		
+		echo '<br>';
+		echo $_SERVER['REQUEST_SCHEME'];
 	?>
   
   
