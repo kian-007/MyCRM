@@ -24,7 +24,7 @@ function get_content(){ ?>
     
         
 
-
+	<?php if(is_user_logged_in()): ?>
     <div class="pp cubic">
         <?php 
             global $pdo;
@@ -51,6 +51,7 @@ function get_content(){ ?>
         <?php echo $last_page['content']; ?>
         
     </div>
+	<?php endif; ?>
     
 <?php }
 

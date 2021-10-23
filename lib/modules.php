@@ -38,6 +38,7 @@ function load_module(){
         
         if(!$current_page['hidden']){
             require_once ("templates/modules/page-loader.php");
+			check_for_authentication_requirement();
         } else{
             add_message('آدرس وارد شده صحیح نیست!', 'error');
             require_once ("templates/modules/home.php");
