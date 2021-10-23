@@ -7,7 +7,7 @@ define('MYSQL_DATABASE', 'my_db');
 define('MYSQL_USERNAME', 'kiki');
 define('MYSQL_PASSWORD', 'king.kian');
 
-define('SITE_URL', 'https://mycrm7.herokuapp.com/');
+define('SITE_URL', $_SERVER['REQUEST_SCHEME'].'://mycrm7.herokuapp.com/');
 define('SITE_PATH', __DIR__. DIRECTORY_SEPARATOR);
 define('APP_TITLE', 'MyCRM');
 

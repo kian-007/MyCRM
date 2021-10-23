@@ -12,6 +12,7 @@ function get_content(){ ?>
 		echo get_module_name();
 		echo '<br>';
 		echo $_SERVER['REQUEST_SCHEME'];
+		echo SITE_URL;
 	?>
   
   
