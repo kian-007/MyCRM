@@ -5,7 +5,7 @@ function authentication_required(){
 }
 
 function get_title(){
-    return 'صفحه چت';
+    echo 'صفحه چت';
 }
 
 function get_content(){ ?>
@@ -15,7 +15,7 @@ function get_content(){ ?>
     
     <div class="col-10 col-md-8">
         
-        <div class="pp float_right" style="height: 550px; width: 100%">
+        <div class="pp float_right" style="height: 550px; width: 100%; margin-right: 0">
             <form method="post">
                 <?php $page = get_page_by_slug('chat'); ?>
                 <div id="showtxt"><div><?php echo $page['content']; ?></div><a name="down"></a></div>
