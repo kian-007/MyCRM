@@ -123,7 +123,31 @@ function add_page($pagedata){
 }
 
 function update_page($pagedata){
-    return add_page($pagedata);
+    $id = $pagedata['id'];
+    if(!$id){
+        $id = 0;
+    }
+    $slug = $pagedata['slug'];
+    $title = $pagedata['title'];
+    $content = $pagedata['content'];
+    $hidden = $pagedata['hidden'];
+    if($hidden == 0){
+        $hidden = 0;
+    }else{
+        $hidden = 1;
+    }
+    global $pdo;
+    if(!page_exists($id)){
+        return;
+    }else {
+        $page = get_page($id);
+        $content2 = $page['content'];
+        $pdo->query("
+            UPDATE pages
+            SET title='$title', content='$content2.$content', hidden='$hidden', slug='$slug'
+            WHERE id ='$id';
+        ");
+    }
 }
 
 function delete_page($id){
