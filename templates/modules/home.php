@@ -13,8 +13,8 @@ function get_content(){ ?>
     <!--<p style="font-size: 17pt;">محتوای این صفحه برای همه قابل دیدن است.</p>-->
     <p class="pp">users count: <?php echo user_count(); ?></p>
     
-	<?php if(is_user_logged_in()): ?>
-    <div class="pp float_right" style="height: 450px; width: 60%">
+    <?php if(is_user_logged_in()): ?>
+<!--    <div class="pp float_right" style="height: 450px; width: 60%">
         <form method="post">
             <?php $page = get_page_by_slug('chat'); ?>
             <div id="showtxt"><div><?php echo $page['content']; ?></div><a name="down"></a></div>
@@ -26,8 +26,21 @@ function get_content(){ ?>
             <button id="delete" name="delete" type="submit" class="btn btn-sm btn-danger" onclick="send(event)">delete</button>
             <a id="downn" href="#down"><img src="<?php echo home_url('include/image/arrow-down.svg'); ?>" /></a>
         </form>
+    </div>-->
+    <?php endif; ?>
+    
+
+
+    <h3>برگه ها:</h3>
+    <div class="pp float_right" id="div1" style="width: 60%">
+        <?php $page_count = page_count();
+        echo "در این سیستم ".'<b>'.$page_count.'</b>'." صفحه تعریف شده است.";
+        ?>
+        
+        <?php display_pages_list(); ?>
     </div>
-	<?php endif; ?>
+
+    
     
     <?php if(is_user_logged_in()): ?>
     <div class="pp cubic float_right">
@@ -60,14 +73,7 @@ function get_content(){ ?>
     </div>
     <?php endif; ?>
     
-    <h3>برگه ها:</h3>
-    <div class="pp" id="div1">
-        <?php $page_count = page_count();
-        echo "در این سیستم ".'<b>'.$page_count.'</b>'." صفحه تعریف شده است.";
-        ?>
-        
-        <?php display_pages_list(); ?>
-    </div>
+    
     
 <?php }
 
@@ -199,6 +205,8 @@ function get_style(){ ?>
         
     </style>
 <?php }
+
+
 
 function get_script(){ ?>
     
