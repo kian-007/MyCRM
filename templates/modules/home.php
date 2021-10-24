@@ -43,7 +43,7 @@ function get_content(){ ?>
     
     
     <?php if(is_user_logged_in()): ?>
-    <div class="pp cubic float_right">
+    <div class="pp cubic float_right" style="padding-left: 50px;>
         <?php 
             global $pdo;
             $result = $pdo->query("
