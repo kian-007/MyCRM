@@ -9,6 +9,9 @@
                   <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li style="border-left: 1px solid gray;"><a class="navbar-brand text-white" href="#"><?php echo APP_TITLE; ?></a></li>
                     <li><a href="<?php echo home_url('home'); ?>" class="nav-link px-2 text-info">خانه</a></li>
+                    <?php if(is_user_logged_in()): ?>
+                    <li><a href="<?php echo home_url('only-chat'); ?>" class="nav-link px-2 text-info">پیام ها</a></li>
+                    <?php endif; ?>
                     <li>
                         <?php if(is_user_logged_in()): $current_user = get_current_user_data(); ?>
                         <a href="<?php echo home_url('dashboard'); ?>" style="text-decoration: none" class="nav-link px-2 text-secondary">< <?php echo $current_user['username']; ?> ></a>
