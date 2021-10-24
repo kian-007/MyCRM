@@ -13,6 +13,7 @@ function get_content(){ ?>
     <!--<p style="font-size: 17pt;">محتوای این صفحه برای همه قابل دیدن است.</p>-->
     <p class="pp">users count: <?php echo user_count(); ?></p>
     
+	<?php if(is_user_logged_in()): ?>
     <div class="pp float_right" style="height: 450px; width: 60%">
         <form method="post">
             <?php $page = get_page_by_slug('chat'); ?>
@@ -26,6 +27,7 @@ function get_content(){ ?>
             <a id="downn" href="#down"><img src="<?php echo home_url('include/image/arrow-down.svg'); ?>" /></a>
         </form>
     </div>
+	<?php endif; ?>
     
     <?php if(is_user_logged_in()): ?>
     <div class="pp cubic float_right">
