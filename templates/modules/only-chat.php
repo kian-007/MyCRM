@@ -11,9 +11,9 @@ function get_title(){
 function get_content(){ ?>
 
 <div class="row">
-    <div class="col-6 col-md-2"></div>
+    <div class="col-1 col-md-2"></div>
     
-    <div class="col-6 col-md-8">
+    <div class="col-10 col-md-8">
         
         <div class="pp float_right" style="height: 550px; width: 100%">
             <form method="post">
@@ -31,7 +31,7 @@ function get_content(){ ?>
         
     </div>
     
-    <div class="col-6 col-md-2"></div>
+    <div class="col-1 col-md-2"></div>
 </div>
 
 <?php }
