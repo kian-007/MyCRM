@@ -88,10 +88,11 @@ function process_inputs(){
             add_message('رمز عبور نمیتواند خالی باشد!', 'error');
             return;
         }
-        
-        if(user_exists($new_username)){
-            add_message('این نام کاربری قبلا انتخاب شده است!', 'warning');
-            return;
+        if($new_username != $username){
+            if(user_exists($new_username)){
+                add_message('این نام کاربری قبلا انتخاب شده است!', 'warning');
+                return;
+            }
         }
 
         update_user($_POST);
