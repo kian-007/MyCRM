@@ -10,7 +10,7 @@ function get_title(){
 
 function get_content(){ ?>
     
-    <button id="add" name="add" class="btn btn-success float_left" style="padding-right: 30px">افزودن</button>
+    <button id="new" name="new" class="btn btn-success float_left" style="padding-right: 30px">افزودن</button>
     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/diff-added.svg'); ?>"	alt="add"/>
     <br>
     <br>
@@ -27,6 +27,7 @@ function get_content(){ ?>
             <th style="">وبسایت</th>
             <th style="">جنسیت</th>
             <th style="">نظرات</th>
+            <th style=""></th>
         </tr>
         <?php $customers = get_all_customers(true);
         $counter = 0;
@@ -74,7 +75,7 @@ function get_content(){ ?>
                     <span style="color: #0a53be"><?php echo $email; ?></span>
                 </td>
                 <td>
-                    <span style="color: #0a53be"><?php echo $website; ?></span>
+                    <a class="mylink_crm" href="<?php echo $website; ?>" style="color: #0a53be"><?php echo $website; ?></a>
                 </td>
                 <td>
                     <span style="color: orange"><?php echo $gender; ?></span>
@@ -82,10 +83,64 @@ function get_content(){ ?>
                 <td>
                     <span><?php echo $comment; ?></span>
                 </td>
+                <td>
+                    <button id="edit" onclick="location.href='<?php echo get_customer_edit_url($id); ?>'" class="btn btn-primary float_left" style="padding-right: 30px">ویرایش</button>
+                    <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/pencil.svg'); ?>"/>
+                    <?php if($hidden): ?>
+                    <button id="unhide" onclick="location.href='<?php echo get_customer_unhide_url($id); ?>'" class="btn btn-warning float_left" style="padding-right: 30px">ظاهر</button>
+                    <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/eye.svg'); ?>"/>
+                    <?php else: ?>
+                    <button id="hide" onclick="location.href='<?php echo get_customer_hide_url($id); ?>'" class="btn btn-warning float_left" style="padding-right: 30px">مخفی</button>
+                    <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/eye-closed.svg'); ?>"/>
+                    <?php endif; ?>
+                    <button id="delete" onclick="location.href='<?php echo get_customer_delete_url($id); ?>'" class="btn btn-danger float_left" style="padding-right: 30px">حذف</button>
+                    <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/diff-removed.svg'); ?>"/>
+                </td>
             </tr>
         
         <?php } ?>
     </table>
-    
 
 <?php }
+
+
+function get_style(){ ?>
+    <style>
+    .mylink_crm {
+        text-decoration: none;
+    }
+    .mylink_crm:hover {
+        border-radius: 1em;
+        background-color: white;
+        text-decoration: underline brown;
+    }
+    </style>
+<?php }
+
+
+
+function process_inputs(){
+    
+    if(empty($_GET)){
+        return;
+    }
+    
+    $action = strtolower($_GET['action']);
+    $id = $_GET['id'];
+    switch ($action){
+        case 'hide':
+            hide_customer($id);
+            break;
+        
+        case 'unhide':
+            unhide_customer($id);
+            break;
+        
+        case 'delete':
+            delete_customer($id);
+            break;
+        
+    }
+    
+    redirect_to(home_url('crm'));
+}

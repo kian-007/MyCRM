@@ -24,24 +24,42 @@ function get_all_customers($include_hidden = false){
 }
 
 
-function get_customer($phone_number){
+function get_customer_by_phone_number($phone_number){
 	if(!$phone_number){
 		return null;
 	}
 	global $pdo;
 	$result = $pdo->query("
 		SELECT *
-		FROM users
+		FROM customers
 		WHERE phone_number = '$phone_number'
 	");
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 	return $row;
 }
 
-function customer_exists($phone_number){
-	$customer = get_user($phone_number);
-	return isset($customer['id']);
+function get_customer_by_id($id){
+	if(!$id){
+		return null;
+	}
+	global $pdo;
+	$result = $pdo->query("
+		SELECT *
+		FROM customers
+		WHERE id = '$id'
+	");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	return $row;
 }
+
+function customer_exists($id){
+	if(!$id){
+        return false;
+    }
+    $customer = get_customer_by_id($id);
+    return isset($customer['id']);
+}
+
 
 function customer_count($include_hidden = false){
 	global $pdo;
@@ -77,116 +95,93 @@ function initialize_users(){
 }
  */
 
-function add_customer($userdata){
-	$phone_number = $userdata['phone_number'];
-	if(!$phone_number){
-		return;
+function add_customer($customerdata){
+	$id = $customerdata['id'];
+	if(!$id){
+            $id = 0;
 	}
-        
-	if(isset($userdata['acc_username'])){
-		$acc_username = $userdata['acc_username'];
-	}
-//	$password = sha1($userdata['password']);
-	if(isset($userdata['first_name'])){
-		$first_name = $userdata['first_name'];
-	}
-	if(isset($userdata['last_name'])){
-		$last_name = $userdata['last_name'];
-	}
-        if(isset($userdata['city'])){
-		$city = $userdata['city'];
-	}
-        if(isset($userdata['address'])){
-		$address = $userdata['address'];
-	}
-        if(isset($userdata['post_code'])){
-		$post_code = $userdata['post_code'];
-	}
-	if(isset($userdata['email'])){
-		$email = $userdata['email'];
-	}
-        if(isset($userdata['website'])){
-		$website = $userdata['website'];
-	}
-        if(isset($userdata['gender'])){
-		$gender = $userdata['gender'];
-	}if(isset($userdata['comment'])){
-		$comment = $userdata['comment'];
-	}
-        if(isset($userdata['hidden'])){
-		$hidden = $userdata['hidden'];
-	}
-//        if(isset($userdata['new_username'])){
-//		$new_username = $userdata['new_username']; //برای تغییر نام کاربری و پسورد
-//	}
-        
+        $phone_number = $customerdata['phone_number'];
+        $acc_username = $customerdata['acc_username'];
+        $first_name = $customerdata['first_name'];
+        $last_name = $customerdata['last_name'];
+        $city = $customerdata['city'];
+        $post_code = $customerdata['post_code'];
+        $address = $customerdata['address'];
+        $email = $customerdata['email'];
+        $website = $customerdata['website'];
+        $gender = $customerdata['gender'];
+        $comment = $customerdata['comment'];
+        $hidden = $customerdata['hidden'];
+        if($hidden == 0){
+            $hidden = 0;
+        }else{
+            $hidden = 1;
+        }
 	
-
 	global $pdo;
-	if(!customer_exists($phone_number)){
+	if(!customer_exists($id)){
 		$pdo->query("
 			INSERT INTO customers (phone_number, acc_username, first_name, last_name, city, address, post_code, email, website, gender, comment, hidden) VALUES
 			('$phone_number', '$acc_username', '$first_name', '$last_name', '$city', '$address', '$post_code', '$email', '$website', '$gender', '$comment', '$hidden');
 		");
+                $id = $pdo->lastInsertId();
 	}else{
-		$customer = get_customer($phone_number);
-		$id = $customer['id'];
-                
-                if(isset($userdata['acc_username'])){
-                        $acc_username = $userdata['acc_username'];
-                }else{$acc_username = $customer['acc_username'];}
-                
-		if(isset($userdata['first_name'])){
-			$first_name = $userdata['first_name'];
-		}else{$first_name = $customer['first_name'];}
-
-		if(isset($userdata['last_name'])){
-			$last_name = $userdata['last_name'];
-		}else{$last_name = $customer['last_name'];}
-
-		if(isset($userdata['phone_number'])){
-			$phone_number = $userdata['phone_number'];
-		}else{$phone_number = $customer['phone_number'];}
-
-		if(isset($userdata['email'])){
-			$email = $userdata['email'];
-		}else{$email = $customer['email'];}
-                
-                if(isset($userdata['website'])){
-                    $website = $userdata['website'];
-                }else{$website = $customer['website'];}
-                
-                if(isset($userdata['gender'])){
-                        $gender = $userdata['gender'];
-                }else{$gender = $customer['gender'];}
-                
-                if(isset($userdata['comment'])){
-                        $comment = $userdata['comment'];
-                }else{$comment = $customer['comment'];}
-                
-                if(isset($userdata['hidden'])){
-                        $hidden = $userdata['hidden'];
-                }else{$hidden = $customer['hidden'];}
-
-		$pdo->query("
+            $pdo->query("
             UPDATE customers
             SET phone_number='$phone_number', acc_username= '$acc_username', first_name='$first_name', last_name='$last_name', city='$city', address='$address', post_code='$post_code', email='$email', website='$website', gender='$gender', comment='$comment', hidden='$hidden' 
             WHERE id ='$id';
         ");
 	}
+        return $id;
 }
 
-function update_customer($userdata){
-    add_customer($userdata);
+function update_customer($customerdata){
+    add_customer($customerdata);
 }
 
-function delete_customer($phone_number){
-	if(!customer_exists($phone_number)){
+function delete_customer($id){
+	if(!customer_exists($id)){
 		return;
 	}
 	global $pdo;
 	$pdo->query("
 		DELETE FROM customers
-		WHERE phone_number = '$phone_number';
+		WHERE id = '$id';
 	");
+}
+
+
+function get_customer_edit_url($id){
+    return home_url("edit-crm?id=$id");
+}
+
+function get_customer_hide_url($id){
+    return home_url("crm?action=hide&id=$id");
+}
+
+function get_customer_unhide_url($id){
+    return home_url("crm?action=unhide&id=$id");
+}
+
+function get_customer_delete_url($id){
+    return home_url("crm?action=delete&id=$id");
+}
+
+
+function hide_customer($id){
+    $customer = get_customer_by_id($id);
+    if(!$customer){
+        return;
+    }
+    $customer['hidden'] = 1;
+    update_customer($customer);
+}
+
+function unhide_customer($id){
+    $customer = get_customer_by_id($id);
+    if(!$customer){
+        return;
+    }
+    $customer['hidden'] = 0;
+    update_customer($customer);
 }
