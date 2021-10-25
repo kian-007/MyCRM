@@ -4,7 +4,7 @@ require 'config.php';
 
 
 $query = array(
-//    'id' => 5,
+   'id' => 2,
     'first_name' => 'کیان',
     'last_name' => 'سلیمانی',
     'acc_username' => 'kian_se',
