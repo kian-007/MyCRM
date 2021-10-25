@@ -4,17 +4,17 @@ require 'config.php';
 
 
 $query = array(
-    'id' => 1,
-    'first_name' => 'کیانا',
-    'last_name' => 'احمدیان',
-    'acc_username' => 'kia_hm',
+//    'id' => 5,
+    'first_name' => 'کیان',
+    'last_name' => 'سلیمانی',
+    'acc_username' => 'kian_se',
     'city' => 'تهران',
-    'email' => 'kiannaahmadian@gmail.com',
-    'phone_number' => '09901366974',
+    'email' => 'king.kian007@gmail.com',
+    'phone_number' => '09198361951',
     'address' => 'خ سپاه - پل چوبی - خ حقوقی - کوچه غزوی',
-    'comment' => 'She is kiana, a perfect woman and a beautiful girl maybe the most beautiful firl in the world',
+    'comment' => 'he is kian, a perfect man and a beautiful boy maybe the most beautiful man in the world',
     'hidden' => 0,
-    'gender' => 'زن',
+    'gender' => 'مرد',
     'post_code' => '54چ89312',
     'website' => 'https://kikiq.herokuapp.com'
 );
@@ -23,8 +23,9 @@ try{
     add_customer($query);
     echo 'successful';
 } catch (Exception $e){
-    echo 'error';
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
+//update_customer($query);
 
 //try{
 //    global $pdo;
