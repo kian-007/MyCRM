@@ -74,7 +74,7 @@ function process_inputs(){
     }
     
     if(isset($_POST['username'])){
-        $username = $_POST['username'];
+        $username = strtolower($_POST['username']);
     }
     
     if(isset($_POST['password'])){
