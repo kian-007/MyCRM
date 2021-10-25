@@ -61,7 +61,7 @@
                                 مدیریت ارتباط با مشتریان
                               </a>
                               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">مشتری</a></li>
+                                  <li><a class="dropdown-item" href="<?php echo home_url('crm'); ?>">مشتری</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                               </ul>

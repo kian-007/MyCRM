@@ -1,5 +1,28 @@
 <?php
 
+function get_all_customers($include_hidden = false){
+    global $pdo;
+    if($include_hidden){
+        $result = $pdo->query("
+            SELECT *
+            FROM customers
+        ");   
+    } else{
+            $result = $pdo->query("
+            SELECT *
+            FROM customers
+            WHERE hidden = 0
+        ");
+    }
+    
+    $customers = array();
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+        $customers[] = $row;
+    }
+    
+    return $customers;
+}
+
 
 function get_customer($phone_number){
 	if(!$phone_number){
@@ -20,12 +43,20 @@ function customer_exists($phone_number){
 	return isset($customer['id']);
 }
 
-function customer_count(){
+function customer_count($include_hidden = false){
 	global $pdo;
+        if($include_hidden){
 	$result = $pdo->query("
 		SELECT *
 		FROM customers
-	");
+            ");
+        }else {
+            $result = $pdo->query("
+		SELECT *
+		FROM customers
+                WHERE hidden=0
+            ");
+        }
 	$counter = 0;
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
 		$counter++;

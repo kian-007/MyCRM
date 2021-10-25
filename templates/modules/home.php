@@ -43,16 +43,9 @@ function get_content(){ ?>
     
     
     <?php if(is_user_logged_in()): ?>
-    <div class="pp cubic float_right" style="padding-left: 50px;>
+    <div class="pp cubic float_right" style="width: 350px;">
         <?php 
-            global $pdo;
-            $result = $pdo->query("
-            select * from pages
-            ORDER BY id DESC LIMIT 1;
-            ");
-            $row = $result->fetch(PDO::FETCH_ASSOC);
-            $id =  $row['id'];
-
+            $id = get_last_page_id();
             $last_page = get_page($id);
             if($last_page['slug'] == 'chat'){
                 $id--;
@@ -67,7 +60,7 @@ function get_content(){ ?>
         <span style="color:red; font-size:larger"><strong>دفترچه یادداشت</strong></span>
         <br>
 
-        <a href="<?php echo get_page_url($id); ?>" style="text-decoration: none; color: white;"><<<?php echo $last_page['title']; ?>>></a>
+        <a href="<?php echo get_page_url($id); ?>" style="text-decoration: none; color: white;">«<?php echo $last_page['title']; ?>»</a>
         <br>
         <?php echo $last_page['content']; ?>
     </div>

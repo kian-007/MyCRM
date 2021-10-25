@@ -259,3 +259,16 @@ function display_pages_list($add_ul = true){
         echo '</ul>';
     }
 }
+
+
+
+function get_last_page_id(){
+    global $pdo;
+    $result = $pdo->query("
+        select * from pages
+        ORDER BY id DESC LIMIT 1;
+    ");
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    $id =  $row['id'];
+    return $id;
+}
