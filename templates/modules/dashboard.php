@@ -75,7 +75,7 @@ function process_inputs(){
         }
 
         if(isset($_POST['new_username'])){
-            $new_username = $_POST['new_username'];
+            $new_username = strtolower($_POST['new_username']);
         }
         
 
