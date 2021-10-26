@@ -21,7 +21,7 @@ $query = array(
 
 $query2 = array(
 	'id' => 3,
-    'username' => 'kolocho',
+    'username' => 'Kolocho',
     'first_name' => 'کیانا',
     'last_name' => 'احمدیان',
     'phone_number' => '09901366974',
