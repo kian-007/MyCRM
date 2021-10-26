@@ -45,7 +45,7 @@ function process_inputs(){
     }
     $page = get_page_by_slug('chat');
     $user = get_current_user_data();
-    $page['content'] = ' <span style="font-size: 7pt"> '.$user['username'].'</span>    <span id="msg"> '.$_POST['txt'].' </span> <br>';
+    $page['content'] = ' <span style="font-size: 7pt" class="'.$user['username'].'"> '.$user['username'].'</span>    <span class="msg" id="'.$user['username'].'"> '.$_POST['txt'].' </span> <br>';
     update_page($page);
     
     if(isset($_POST['delete'])){
@@ -60,12 +60,22 @@ function process_inputs(){
 
 function get_style(){ ?>
     <style>
-        #msg {
-            background-color:purple;
+        
+        <?php 
+            $user = get_current_user_data();
+            if($user['username'] == 'kian_se'){
+                echo "#kian_se {background-color: green ; margin-left: 60%} "
+                   . ".kian_se {color:purple;}";
+            }elseif($user['username'] == 'kia_hm'){
+                echo "#kia_hm {background-color: green; margin-left: 60%}"
+                   . ".kia_hm {color:red;}";}
+        ?>
+        
+        .msg {
+            background-color:blue;
             color:white;
             height: 50px;
             border-radius:30px;
-            margin-right:20px;
         }
         
         #showtxt {
@@ -77,6 +87,7 @@ function get_style(){ ?>
             position: relative;
             right: 35px;
             overflow: auto;
+            text-align: left;
         }
         
         .left {
@@ -143,6 +154,13 @@ function get_style(){ ?>
 function get_script(){ ?>
     
     <script>
+       <?php
+//         $user = get_current_user_data();
+//         if($user['username'] == 'kian_se'): 
+//             
+//         endif;
+        ?>
+//         document.getElementById('kian_se').style.textAlign='right'
         
 //        function send(){
 //            var txt = document.getElementById('txt').value
