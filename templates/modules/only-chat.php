@@ -157,7 +157,6 @@ function get_style(){ ?>
 function get_script(){ ?>
     
     <script>
-        
            function txt_keyup(e){
                if(e.keyCode == 13){
                    document.getElementById('send').click()
@@ -171,22 +170,6 @@ function get_script(){ ?>
            function scrollToBottom() {
              elmnt.scrollIntoView(false); // Bottom
            }
-           
-           
-//         document.getElementById('kian_se').style.textAlign='right'
-        
-//        function send(){
-//            var txt = document.getElementById('txt').value
-//            var message = document.createElement('div')
-//            message.id = 'msg'
-//            message.innerHTML = txt+'<br>'
-//            document.getElementById('showtxt').appendChild(message)
-//                
-//        }
-
-        function send(e){
-            e.preventDefault()
-        }
     </script>
 
 <?php }
