@@ -10,7 +10,7 @@ function get_title(){
 
 function get_content(){ ?>
     
-    <button id="new" name="new" class="btn btn-success float_left" style="padding-right: 30px">افزودن</button>
+    <button onclick="location.href='<?php echo home_url('new-crm'); ?>'" id="new" name="new" class="btn btn-success float_left" style="padding-right: 30px">افزودن</button>
     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/diff-added.svg'); ?>"	alt="add"/>
     <br>
     <br>
