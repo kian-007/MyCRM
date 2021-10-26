@@ -76,7 +76,7 @@ function add_user($userdata){
 			INSERT INTO users (username, password, first_name, last_name, phone_number, email) VALUES
 			('$username', '$password', '$first_name', '$last_name', '$phone_number', '$email');
 		");
-	}else{
+	}elseif(user_exists($username) && !empty($new_username)){
 		$user = get_user($username);
 		$id = $user['id'];
 
@@ -101,7 +101,32 @@ function add_user($userdata){
             SET username='$new_username', password='$password', first_name='$first_name', last_name='$last_name', phone_number='$phone_number', email='$email'
             WHERE id ='$id';
         ");
-	}
+        }else{
+            $user = get_user($username);
+		$id = $user['id'];
+
+		if(isset($userdata['first_name'])){
+			$first_name = $userdata['first_name'];
+		}else{$first_name = $user['first_name'];}
+
+		if(isset($userdata['last_name'])){
+			$last_name = $userdata['last_name'];
+		}else{$last_name = $user['last_name'];}
+
+		if(isset($userdata['phone_number'])){
+			$phone_number = $userdata['phone_number'];
+		}else{$phone_number = $user['phone_number'];}
+
+		if(isset($userdata['email'])){
+			$email = $userdata['email'];
+		}else{$email = $user['email'];}
+
+		$pdo->query("
+            UPDATE users
+            SET username='$username', password='$password', first_name='$first_name', last_name='$last_name', phone_number='$phone_number', email='$email'
+            WHERE id ='$id';
+        ");
+        }
 }
 
 function update_user($userdata){
