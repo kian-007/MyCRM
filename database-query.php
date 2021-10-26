@@ -21,7 +21,7 @@ $query = array(
 
 $query2 = array(
 	'id' => 3,
-    'username' => 'Kolocho',
+    'username' => 'kolocho',
     'first_name' => 'کیانا',
     'last_name' => 'احمدیان',
     'phone_number' => '09901366974',
@@ -30,7 +30,7 @@ $query2 = array(
 );
 
 try{
-    add_user($query2);
+    update_user($query2);
     echo 'successful';
 } catch (Exception $e){
     echo 'Caught exception: ',  $e->getMessage(), "\n";
