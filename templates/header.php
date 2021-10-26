@@ -26,7 +26,7 @@
         ?>
         <title><?php get_title() ?></title>
     </head>
-    <body>
+    <body onload="scrollToBottom(); txt_focus()">
         <!-- Navigation Bar -->
         <?php  include_once ('templates/nav.php'); ?>
         
