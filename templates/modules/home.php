@@ -11,7 +11,7 @@ function get_title(){
 function get_content(){ ?>
   
     <!--<p style="font-size: 17pt;">محتوای این صفحه برای همه قابل دیدن است.</p>-->
-    <p class="pp">users count: <?php echo user_count(); ?></p>
+    <p class="pp">تعداد کاربران سیستم: <?php echo user_count(); ?></p>
     
     <?php if(is_user_logged_in()): ?>
 <!--    <div class="pp float_right" style="height: 450px; width: 60%">
