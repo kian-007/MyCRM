@@ -18,12 +18,12 @@ function get_content(){ ?>
         <div class="pp float_right" style="height: 550px; width: 100%; margin-right: 0">
             <form method="post">
                 <?php $page = get_page_by_slug('chat'); ?>
-                <div id="showtxt"><div><?php echo $page['content']; ?></div><a name="down"></a></div>
+                <div id="showtxt"><div><?php echo $page['content']; ?></div><a id="downnn" name="down"></a></div>
                 <p class="type">
                     <span style="position: absolute; bottom: 100px;"><?php $user = get_current_user_data(); echo $user['username']; ?></span>
-                    <textarea id="txt" name="txt"></textarea>
+                    <textarea id="txt" name="txt" onkeyup="txt_keyup(event)"></textarea>
                 </p>
-                <button id="send" type="submit" class="btn btn-sm btn-success" onclick="send(event)">Send</button>
+                <button id="send" type="submit" class="btn btn-sm btn-success" onclick="send(event)" >Send</button>
                 <button id="delete" name="delete" type="submit" class="btn btn-sm btn-danger" onclick="send(event)">delete</button>
                 <a id="downn" href="#down"><img src="<?php echo home_url('include/image/arrow-down.svg'); ?>" /></a>
             </form>
@@ -63,12 +63,15 @@ function get_style(){ ?>
         
         <?php 
             $user = get_current_user_data();
-            if($user['username'] == 'kian_se'){
-                echo "#kian_se {background-color: green ; margin-left: 60%} "
-                   . ".kian_se {color:purple;}";
-            }elseif($user['username'] == 'kia_hm'){
-                echo "#kia_hm {background-color: green; margin-left: 60%}"
-                   . ".kia_hm {color:red;}";}
+            $username = $user['username'];
+//            if($user['username'] == 'kian_se'){
+//                echo "#kian_se {background-color: green ; margin-left: 60%} "
+//                   . ".kian_se {color:purple;}";
+//            }elseif($user['username'] == 'kia_hm'){
+//                echo "#kia_hm {background-color: green; margin-left: 60%}"
+//                   . ".kia_hm {color:red;}";}
+            echo "#$username {background-color: green; margin-left: 60%}"
+               . ".$username {color:purple;}";
         ?>
         
         .msg {
@@ -154,12 +157,22 @@ function get_style(){ ?>
 function get_script(){ ?>
     
     <script>
-       <?php
-//         $user = get_current_user_data();
-//         if($user['username'] == 'kian_se'): 
-//             
-//         endif;
-        ?>
+        
+           function txt_keyup(e){
+               if(e.keyCode == 13){
+                   document.getElementById('send').click()
+               }
+           }
+           function txt_focus(){
+               document.getElementById('txt').focus()
+           }
+           
+           var elmnt = document.getElementById("downnn");
+           function scrollToBottom() {
+             elmnt.scrollIntoView(false); // Bottom
+           }
+           
+           
 //         document.getElementById('kian_se').style.textAlign='right'
         
 //        function send(){
