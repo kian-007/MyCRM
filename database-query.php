@@ -19,8 +19,18 @@ $query = array(
     'website' => 'https://kikiq.herokuapp.com'
 );
 
+$query2 = array(
+	'id' => 3,
+    'username' => 'kolocho',
+    'first_name' => 'کیانا',
+    'last_name' => 'احمدیان',
+    'phone_number' => '09901366974',
+    'email' => 'kiannaahmadian@gmail',
+    'password' => '1234'
+);
+
 try{
-    add_customer($query);
+    add_user($query2);
     echo 'successful';
 } catch (Exception $e){
     echo 'Caught exception: ',  $e->getMessage(), "\n";
