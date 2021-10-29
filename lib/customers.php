@@ -188,7 +188,7 @@ function search_customers($search, $include_hidden = false){
     if($include_hidden){
     $result = $pdo->query("
             SELECT * FROM customers
-            WHERE first_name LIKE '%$search%'
+            WHERE first_name LIKE '%$search%' or phone_number LIKE '%$search%'
         ");
     $customers = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -199,7 +199,7 @@ function search_customers($search, $include_hidden = false){
     } else {
         $result = $pdo->query("
             SELECT * FROM customers
-            WHERE first_name LIKE '%$search%' and hidden=0
+            WHERE (first_name LIKE '%$search%' or phone_number LIKE '%$search%') and hidden=0
         ");
     $customers = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -208,4 +208,5 @@ function search_customers($search, $include_hidden = false){
     
     return $customers;
     }
+    
 }

@@ -10,7 +10,6 @@ function get_title(){
 
 function get_content(){ ?>
     
-    
     <?php
     $search = null;
     if(isset($_POST['search'])){$search = $_POST['search'];}
@@ -33,7 +32,7 @@ function get_content(){ ?>
             <th style="">ایمیل و وبسایت</th>
             <th style="">جنسیت</th>
             <th style="">نظرات</th>
-            <th style="width: 130px;">
+            <th style="width: 160px;">
                 <form method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                 </form>
@@ -44,6 +43,7 @@ function get_content(){ ?>
             $customers = get_all_customers(true);
         }else {
             $customers = search_customers($search, true);
+            if(empty($customers)){ echo '<h3> چیزی یافت نشد! <h3>'; }
         }
         $counter = 0;
         foreach ($customers as $customer) {
@@ -63,7 +63,6 @@ function get_content(){ ?>
            $hidden = $customer['hidden'];
            $type = $customer['type'];
            ?>
-
         <tr class="table-active table-info border-secondary">
                 <td><?php echo $counter; ?></td>
                 <td>
@@ -106,12 +105,18 @@ function get_content(){ ?>
                 <td>
                     <button id="edit" onclick="location.href='<?php echo get_customer_edit_url($id); ?>'" class="btn btn-primary float_left" style="padding-right: 30px">ویرایش</button>
                     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/pencil.svg'); ?>"/>
+                    <br>
+                    <br>
                     <?php if($hidden): ?>
                     <button id="unhide" onclick="location.href='<?php echo get_customer_unhide_url($id); ?>'" class="btn btn-warning float_left" style="padding-right: 30px">ظاهر</button>
                     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/eye.svg'); ?>"/>
+                    <br>
+                    <br>
                     <?php else: ?>
                     <button id="hide" onclick="location.href='<?php echo get_customer_hide_url($id); ?>'" class="btn btn-warning float_left" style="padding-right: 30px">مخفی</button>
                     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/eye-closed.svg'); ?>"/>
+                    <br>
+                    <br>
                     <?php endif; ?>
                     <button id="delete" onclick="location.href='<?php echo get_customer_delete_url($id); ?>'" class="btn btn-danger float_left" style="padding-right: 30px">حذف</button>
                     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/diff-removed.svg'); ?>"/>
@@ -123,10 +128,9 @@ function get_content(){ ?>
     
     
     
-    
-
 <?php }
 
+    
 
 
 
