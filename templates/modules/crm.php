@@ -10,6 +10,12 @@ function get_title(){
 
 function get_content(){ ?>
     
+    
+    <?php
+    $search = null;
+    if(isset($_POST['search'])){$search = $_POST['search'];}
+     
+    ?>
     <button onclick="location.href='<?php echo home_url('new-crm'); ?>'" id="new" name="new" class="btn btn-success float_left" style="padding-right: 30px">افزودن</button>
     <img class="float_left" style="position: relative; right:25px; top:10px"   src="<?php echo home_url('include/image/diff-added.svg'); ?>"	alt="add"/>
     <br>
@@ -27,9 +33,18 @@ function get_content(){ ?>
             <th style="">ایمیل و وبسایت</th>
             <th style="">جنسیت</th>
             <th style="">نظرات</th>
-            <th style=""></th>
+            <th style="width: 130px;">
+                <form method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" name="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                </form>
+            </th>
         </tr>
-        <?php $customers = get_all_customers(true);
+        <?php
+        if(!$search){
+            $customers = get_all_customers(true);
+        }else {
+            $customers = search_customers($search, true);
+        }
         $counter = 0;
         foreach ($customers as $customer) {
            $counter++;
@@ -48,6 +63,7 @@ function get_content(){ ?>
            $hidden = $customer['hidden'];
            $type = $customer['type'];
            ?>
+
         <tr class="table-active table-info border-secondary">
                 <td><?php echo $counter; ?></td>
                 <td>
@@ -104,12 +120,19 @@ function get_content(){ ?>
         
         <?php } ?>
     </table>
+    
+    
+    
+    
 
 <?php }
 
 
+
+
 function get_style(){ ?>
     <style>
+    
     .mylink_crm {
         text-decoration: none;
     }
@@ -124,6 +147,7 @@ function get_style(){ ?>
 
 
 function process_inputs(){
+    
     
     if(empty($_GET)){
         return;

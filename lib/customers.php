@@ -182,3 +182,30 @@ function unhide_customer($id){
     $customer['hidden'] = 0;
     update_customer($customer);
 }
+
+function search_customers($search, $include_hidden = false){
+    global $pdo;
+    if($include_hidden){
+    $result = $pdo->query("
+            SELECT * FROM customers
+            WHERE first_name LIKE '%$search%'
+        ");
+    $customers = array();
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+        $customers[] = $row;
+    }
+    
+    return $customers;
+    } else {
+        $result = $pdo->query("
+            SELECT * FROM customers
+            WHERE first_name LIKE '%$search%' and hidden=0
+        ");
+    $customers = array();
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+        $customers[] = $row;
+    }
+    
+    return $customers;
+    }
+}
