@@ -18,13 +18,13 @@ function get_content(){ ?>
         <tr class="table-dark border-5" style="text-align: center">
             <th style="">ردیف</th>
             <th style="">نام کاربری مشتری</th>
-            <th style="">نام و نام خانوادگی مشتری</th>
+            <th style="">نام مشتری</th>
+            <th style="">نوع</th>
             <th style="">شهر</th>
             <th style="">آدرس</th>
             <th style="">کد پستی</th>
             <th style="">شماره تلفن</th>
-            <th style="">ایمیل</th>
-            <th style="">وبسایت</th>
+            <th style="">ایمیل و وبسایت</th>
             <th style="">جنسیت</th>
             <th style="">نظرات</th>
             <th style=""></th>
@@ -46,6 +46,7 @@ function get_content(){ ?>
            $gender = $customer['gender'];
            $comment = $customer['comment'];
            $hidden = $customer['hidden'];
+           $type = $customer['type'];
            ?>
         <tr class="table-active table-info border-secondary">
                 <td><?php echo $counter; ?></td>
@@ -60,6 +61,9 @@ function get_content(){ ?>
                     <br>    
                 </td>
                 <td>
+                    <span style="<?php if($type == 'حقیقی'){ echo "color: green";}else{ echo "color: red";} ?>"><strong><?php echo $type ?></strong></span>
+                </td>
+                <td>
                     <span><?php echo $city; ?></span>
                 </td>
                 <td style="width:150px">
@@ -72,13 +76,13 @@ function get_content(){ ?>
                     <span style="color: #055160"><?php echo $phone_number; ?></span>
                 </td>
                 <td>
-                    <span style="color: #0a53be"><?php echo $email; ?></span>
+                    <span style="color: #0a53be">
+                        ایمیل: <?php echo $email; ?> <br>
+                        وبسایت: <a class="mylink_crm" href="<?php echo $website; ?>" style="color: #0a53be"><?php echo $website; ?></a>
+                    </span>
                 </td>
                 <td>
-                    <a class="mylink_crm" href="<?php echo $website; ?>" style="color: #0a53be"><?php echo $website; ?></a>
-                </td>
-                <td>
-                    <span style="color: orange"><?php echo $gender; ?></span>
+                    <span style="<?php if($gender == 'مرد'){ echo "color: brown";}else{ echo "color: #b637b0";} ?>"><?php echo $gender; ?></span>
                 </td>
                 <td>
                     <span><?php echo $comment; ?></span>

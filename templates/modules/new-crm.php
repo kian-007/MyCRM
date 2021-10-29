@@ -122,14 +122,24 @@ function get_content(){ ?>
                 </div>
             
         </div>
-
+        <div class="col-4 col-md-4">
+            
+                <div class="form-floating">
+                  <input id="type" name="type" type="text" aria-label="type" class="form-control" placeholder="type">
+                  <label for="gender">نوع</label>
+                </div>
+            
+        </div>
+        
+    </div>
+    <br>
+    <div class="row">
         <div class="col-4 col-md-4">
                 <br>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="hidden" name="hidden" >
                   <label class="form-check-label" for="hidden">مخفی</label>
                 </div>
-            
         </div>
     </div>
     <br>

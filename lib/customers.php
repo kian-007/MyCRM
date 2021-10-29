@@ -23,7 +23,6 @@ function get_all_customers($include_hidden = false){
     return $customers;
 }
 
-
 function get_customer_by_phone_number($phone_number){
 	if(!$phone_number){
 		return null;
@@ -59,7 +58,6 @@ function customer_exists($id){
     $customer = get_customer_by_id($id);
     return isset($customer['id']);
 }
-
 
 function customer_count($include_hidden = false){
 	global $pdo;
@@ -112,6 +110,7 @@ function add_customer($customerdata){
         $gender = $customerdata['gender'];
         $comment = $customerdata['comment'];
         $hidden = $customerdata['hidden'];
+        $type = $customerdata['type'];
         if($hidden == 0){
             $hidden = 0;
         }else{
@@ -121,14 +120,14 @@ function add_customer($customerdata){
 	global $pdo;
 	if(!customer_exists($id)){
 		$pdo->query("
-			INSERT INTO customers (phone_number, acc_username, first_name, last_name, city, address, post_code, email, website, gender, comment, hidden) VALUES
-			('$phone_number', '$acc_username', '$first_name', '$last_name', '$city', '$address', '$post_code', '$email', '$website', '$gender', '$comment', '$hidden');
+			INSERT INTO customers (phone_number, acc_username, first_name, last_name, city, address, post_code, email, website, gender, comment, hidden, type) VALUES
+			('$phone_number', '$acc_username', '$first_name', '$last_name', '$city', '$address', '$post_code', '$email', '$website', '$gender', '$comment', '$hidden', '$type');
 		");
                 $id = $pdo->lastInsertId();
 	}else{
             $pdo->query("
             UPDATE customers
-            SET phone_number='$phone_number', acc_username= '$acc_username', first_name='$first_name', last_name='$last_name', city='$city', address='$address', post_code='$post_code', email='$email', website='$website', gender='$gender', comment='$comment', hidden='$hidden' 
+            SET phone_number='$phone_number', acc_username= '$acc_username', first_name='$first_name', last_name='$last_name', city='$city', address='$address', post_code='$post_code', email='$email', website='$website', gender='$gender', comment='$comment', hidden='$hidden', type='$type' 
             WHERE id ='$id';
         ");
 	}
@@ -150,7 +149,6 @@ function delete_customer($id){
 	");
 }
 
-
 function get_customer_edit_url($id){
     return home_url("edit-crm?id=$id");
 }
@@ -166,7 +164,6 @@ function get_customer_unhide_url($id){
 function get_customer_delete_url($id){
     return home_url("crm?action=delete&id=$id");
 }
-
 
 function hide_customer($id){
     $customer = get_customer_by_id($id);

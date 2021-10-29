@@ -129,7 +129,20 @@ if(!$customer){
                 </div>
             
         </div>
-
+        
+        <div class="col-4 col-md-4">
+            
+                <div class="form-floating">
+                  <input id="type" name="type" type="text" aria-label="type" class="form-control" placeholder="type" value="<?php echo $customer['type']; ?>">
+                  <label for="gender">نوع</label>
+                </div>
+            
+        </div>
+        
+    </div>
+    
+    <br>
+    <div class="row">
         <div class="col-4 col-md-4">
                 <br>
                 <div class="form-check form-switch">
@@ -162,6 +175,7 @@ function process_inputs(){
 
   add_customer($customer);
 //  add_message('تغییرات با موفقیت ذخیره شد', 'success');
+//    <script language="javascript" type="text/javascript" >alert('تغییرات با موفقیت ذخیره شد')</script>
   redirect_to(home_url('crm'));
   
 }
@@ -173,6 +187,6 @@ function get_style(){ ?>
     </style>
 <?php }
 
-function get_script(){
-    
-}
+function get_script(){ ?>
+   
+<?php }
